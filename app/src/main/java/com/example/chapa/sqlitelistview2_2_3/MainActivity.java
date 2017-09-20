@@ -35,17 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         llenarLista();
         eventoList();
-
-
     }
 
     private void eventoList(){
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(final AdapterView adapterView, View view,int i, long l) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int i, long id) {
+                Toast.makeText(getApplicationContext(),"Actualizar/Eliminar",Toast.LENGTH_SHORT).show();
                 fabb.setVisibility(View.VISIBLE);
                 fabup.setVisibility(View.VISIBLE);
-                new CountDownTimer(3000, 1000){
+                new CountDownTimer(2000, 1000){
                     public void onTick(long millisUntilFinished){}
                     public  void onFinish(){
                         fabb.setVisibility(View.INVISIBLE);
@@ -56,22 +55,29 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         bd.open();
-                        if(bd.deleteContactById(0)){
+                        if(bd.deleteContactById(idAux[i])){
                             Toast.makeText(getApplicationContext(),"Eliminado",Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
                         }
                         bd.close();
                         llenarLista();
+                        fabb.setVisibility(View.INVISIBLE);
+                        fabup.setVisibility(View.INVISIBLE);
                     }
                 });
                 fabup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(),"Actualizar",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this,Add_Upd.class);
+                        intent.putExtra("op",1);
+                        intent.putExtra("id",idAux[i]);
+                        startActivity(intent);
                     }
                 });
+                return true;
             }
+
         });
     }
 
@@ -87,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void llenarLista(){
         bd.open();
-
         int n=bd.lengthQuery();
         int ids []= new int[n];
         String [] nombre = new String[n];
@@ -95,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         String [] telefono = new String[n];
 
         int i=0;
-        Cursor result=bd.getAllContacts();
+        Cursor result=bd.getAllContactsAZ();
         result.moveToFirst();
         while (!result.isAfterLast()) {
             int id = result.getInt(0);

@@ -64,14 +64,6 @@ public class DBAdapter {
     public boolean deleteContactById(long rowId) {
         return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
-    public boolean deleteContactByName(String NAME) {
-        return db.delete(DATABASE_TABLE, KEY_NAME+ "=" + NAME, null) > 0;
-    }
-
-    public int getIdByName(String name){
-        Vector vt=getAllContactsVector(getContactByName(name));
-        return Integer.parseInt(vt.get(0).toString());
-    }
 
     //---Ver cuantos contactos existen---
     public int lengthQuery(){
@@ -94,11 +86,6 @@ public class DBAdapter {
 
     public Cursor getAllContactsAZ() {
         String sql="SELECT * FROM "+DATABASE_TABLE+" ORDER BY "+KEY_NAME+" ; ";
-        return db.rawQuery(sql,null);
-    }
-
-    public Cursor getContactByName(String name) {
-        String sql="SELECT * FROM "+DATABASE_TABLE+" WHERE "+KEY_NAME+" = "+name+";";
         return db.rawQuery(sql,null);
     }
 
