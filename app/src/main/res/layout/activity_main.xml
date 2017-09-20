@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chapa.sqlitelistview2_2_3.MainActivity">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabUp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/fabB"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@android:drawable/ic_popup_sync" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabB"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:layout_editor_absoluteX="320dp"
+        tools:layout_editor_absoluteY="454dp" />
+
+    <ListView
+        android:id="@+id/lista"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+</android.support.constraint.ConstraintLayout>
